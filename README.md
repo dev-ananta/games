@@ -1,8 +1,16 @@
-# games — Collection of small browser games
+# Unblocked Games — Collection of Small Browser-Based Games
 
+```
+Please Note That This Website/GitHub Pages Doesn't Possess Responsibility Over Any Games Listed Here. We Only Host Them For Free & Public Usage.
+```
+
+```
+Also Please Note That Some Games Might Not Work Properly On Mobile Devices, Older Browsers, Certain Operating Systems, Or Other Reasons.
+```
 This repository contains a collection of small HTML/JS games (originally sourced/ported from CodePen) and a single `index.html` that links to each game.
 
 Live site (GitHub Pages): https://dev-ananta.github.io/games/
+
 
 ## Structure
 
@@ -32,11 +40,6 @@ Or with Node (if you have `http-server`):
 npx http-server -p 8000
 # then open http://localhost:8000/
 ```
-
-## Notes & fixes applied
-
-- `index.html` links were previously malformed (plain text entries pointing to `dev-ananta.github.io/...`). Those have been replaced with correct relative links to the files under `codepen.io/` so the site works on GitHub Pages and when served locally.
-- Filenames in `codepen.io/` were verified and used as-is (e.g. `tic-tac-toe-2p.html`, `memory-game-pretty.html`).
 
 ## Contributing
 
