@@ -1,332 +1,142 @@
 <!DOCTYPE html>
 
-
-<!-- Ultimate Game Stash file--> 
-<!-- For the regularly updating doc go to https://docs.google.com/document/d/1_FmH3BlSBQI7FGgAQL59-ZPe8eCxs35wel6JUyVaG8Q/ -->
-
-
 <html lang="en-us">
   <base href="https://cdn.jsdelivr.net/gh/abisdbest/classroom.google.com@45b2d69c626dc365753f6922d2c48c4075683ef5/drive.google.com/escape%20road/">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>Escape Road</title>
-<link rel="shortcut icon" href="icon.png">
-<link rel="stylesheet" href="TemplateData/style.css">
-<script src="https://cdn.jsdelivr.net/npm/eruda"></script>
-<script>eruda.init()</script>
-</head>
-<style>
-  @font-face {
-  font-family: myFirstFont;
-  src: url(Chainwhacks.otf);
-  }
-  #logo-canvas, body {
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Unblocked Games</title>
+  </head>
+
+  <style>
+    @font-face {
     font-family: myFirstFont;
-  }
-  
-  :root {
-    --accent: #363844;
-    --accent-dark: #272930;
-    --muted: #b0b0b0;
-    --bg: #000000;
-    --card: #3f3e42;
-    --max-width: 1100px;
-    --radius: 12px;
-    --shadow: 0 6px 20px rgba(0,0,0,0.08);
-  }
-
-  * { box-sizing: border-box; }
-  
-  html, body { 
-    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    margin: 0;
-    background: linear-gradient(180deg, #171717 25%, #2e2d2d 75%);
-    color: #f5f5f5;
-    line-height: 1.45;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    transition: background 0.3s, color 0.3s;
-  }
-
-  .wrap { max-width: var(--max-width); margin: 32px auto; padding: 24px; }
-  
-  header { display:flex; gap:16px; align-items:center; margin-bottom:18px; }
-  h1 { margin:0; font-size:24px; }
-  .sub { color: var(--muted); font-size:14px; }
-  nav { margin-top:12px; display:flex; gap:8px; flex-wrap:wrap; }
-  
-  main { display:block; margin-top:22px; }
-  
-  .card {
-    background:var(--card); padding:16px; border-radius:var(--radius);
-    box-shadow:var(--shadow); transition: background 0.3s, color 0.3s;
-  }
-  
-  section > article.card { margin-top: 14px; }
-  section > article.card:first-child { margin-top: 0; }
-  
-  .section-title { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
-  .muted { color:var(--muted); font-size:13px; }
-  .muted-block { color:var(--muted); font-size:13px; margin-top:8px; }
-  
-  .center { display:flex; align-items:center; gap:10px; }
-  .cta { background:var(--accent); color:#fff; padding:10px 14px; border-radius:12px; font-weight:600; display:inline-block; font-size:13px; }
-  
-  footer { margin-top:22px; text-align:center; color:var(--muted); font-size:13px; padding:18px 0; }
-</style>
-<body class="dark">
-<div id="unity-container" class="unity-desktop"><p style="opacity: 0;position: absolute;">_</p>
-<canvas id="unity-canvas"></canvas>
-</div>
-<div id="loading-cover" style="display:none;background: black;">
-<div id="unity-loading-bar">
-<canvas id="logo-canvas" style="position: absolute; background-color: black;">
-<img src="loading.png" id="ld_bg">
-<img src="car-icon.png" id="ld_car">
-</canvas>
-</div>
-</div>
-<!-- /0a502697b99e36d322eeb8daf23bc8b8.data.unityweb",
-      frameworkUrl: buildUrl + "/f9b96a5188376a54aba0e08c0ed35ba8.js.unityweb",
-      codeUrl: buildUrl + "/7b28c6f059eabf99b5ee87d37b2df90c.wasm.unityweb",
-      streamingAssetsUrl: " -->
-<img id="azlogo" class="az" src="az_logo.png">
-<script type="57480f3f31f76c75506c83a0-text/javascript">
-    const container = document.querySelector("#unity-container");
-    const canvas = document.querySelector("#unity-canvas");
-    const loadingCover = document.querySelector("#loading-cover");
-    const fullscreenButton = document.querySelector("#unity-fullscreen-button");
-
-
-
-    const buildUrl = "TemplateData";
-    const loaderUrl = buildUrl + "/loader.js";
-    const config = {
-      dataUrl: buildUrl + "/data.unityweb",
-      frameworkUrl: buildUrl + "/framework.js.unityweb",
-      codeUrl: buildUrl + "/wasm.unityweb",
-      streamingAssetsUrl: "StreamingAssets",
-      companyName: "1games.io",
-      productName: "Escape Road",
-      productVersion: "2.0",
-    };
-
-    
-    
-    if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-      container.className = "unity-mobile";
-      config.devicePixelRatio = 1;
+    src: url(Chainwhacks.otf);
+    }
+    #logo-canvas, body {
+      font-family: myFirstFont;
     }
     
-    function delay(ms) {
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          resolve();
-        }, ms);
-      });
-    }
-    async function load() {
-
-      var az_logo = document.getElementById('azlogo');
-      az_logo.style.opacity = 0;
-      logo_loaded = true;
-     /* var t = new Date().getTime();
-      while (az_logo.style.opacity < 1) {
-        var delta = new Date().getTime() - t;
-        az_logo.style.opacity = delta / 1000;
-        await delay(20);
-      }
-      await delay(1000);*/
-      az_logo.style.display = 'none';
-      logo_loaded = false;
-      
-      createUnityInstance(canvas, config, (progress) => {
-        logo_loading_percent = progress;
-        drawCanvas(progress);
-      }).then((unityInstance) => {
-        window.unityInstance = unityInstance;
-        setTimeout(() => {
-          loadingCover.style.display = "none";
-          logo_loaded = true;
-          window.focus();
-        }, 2000);
-      }).catch((message) => {
-        alert(message);
-      });
+    :root {
+      --accent: #363844;
+      --accent-dark: #272930;
+      --muted: #b0b0b0;
+      --bg: #000000;
+      --card: #3f3e42;
+      --max-width: 1100px;
+      --radius: 12px;
+      --shadow: 0 6px 20px rgba(0,0,0,0.08);
     }
 
-    loadingCover.style.display = "";
-
-    var script = document.createElement("script");
-    script.src = loaderUrl;
-    script.onload = () => {
-      load();
-    };
-
-    // setTimeout(() => {
-    //     var progress = 0.5;
-    //     logo_loading_percent = progress;
-    //     drawCanvas(progress);
-    //   }, 1000);
-
-    // var progress = 0;
-    // setInterval(() => {
-    //   logo_loading_percent = progress;
-    //   drawCanvas(progress);
-    //   progress += 0.01;
-    // }, 30);
-
-
-    var logo_loaded = false;
-    var logo_loading_percent = 0;
-
-    window.onresize = () => {
-      // console.log('onresize');
-      drawCanvas(logo_loading_percent);
-    }
-    window.onload = () => {
-      // console.log('onload');
-      drawCanvas(logo_loading_percent);
+    * { box-sizing: border-box; }
+    
+    html, body { 
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      margin: 0;
+      background: linear-gradient(180deg, #171717 25%, #2e2d2d 75%);
+      color: #f5f5f5;
+      line-height: 1.45;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      transition: background 0.3s, color 0.3s;
     }
 
-    var logo_canvas = document.getElementById("logo-canvas");
-    function drawCanvas(_percent = 0) {
-      if (logo_loaded) {
-        return;
-      }
-      resizeLogoCanvas();
-      var ctx = logo_canvas.getContext("2d");
-      var ld_bg = document.getElementById("ld_bg");
-      var ld_car = document.getElementById("ld_car");
-
-      var _sw = logo_canvas.width / 1920;
-      var _sh = logo_canvas.height / 1080;
-
-      if (_percent > 1) {
-        _percent = 1;
-      }
-
-      //bgbar
-      var bgbar_H = 86;
-      var bgbar_W = 1383;
-      //fillbar
-      var fillbar_H = 55;
-      var fillbar_W = 1345;
-      //Mask
-      var maskbar_H = 55;
-      var maskbar_W = 1350;
-      //bg_bar_mask
-      var bgbar_mask_H = 86;
-      var bgbar_mask_W = 1383;
-
-      var posshowbar_Y = 200;   //position loadingbar 
-
-      var posbgbar_X = (1920 - bgbar_W) / 2; // center
-      var posbgbar_Y = posshowbar_Y;
-
-      var posfillbar_X = (1920 - fillbar_W) / 2;
-      var posfillbar_Y = posshowbar_Y - 15;
-
-      var posmaskbar_X = (1920 - maskbar_W) / 2;
-      var posmaskbar_Y = posshowbar_Y - 15;
-
-      var _fl = 0;
-      var _fl1 = posmaskbar_X + _percent * maskbar_W;
-
-      var _fw = maskbar_W - _percent * maskbar_W;
-
-      // console.log(`${logo_canvas.width} ${logo_canvas.height}`);
-      //background
-      ctx.drawImage(ld_bg, 0, 0, logo_canvas.width, logo_canvas.height);
-
-      //loading background
-      ctx.fillStyle = "#977e21";
-      var _lw = 700;
-      var _lh = 50;
-      ctx.fillRect((1920 - _lw) * 0.5 * _sw, (1080 - 150) * _sh, _lw * _sw, _lh * _sh);
-
-      //loading progress
-      ctx.fillStyle = "#fad234";
-      var _pad = 5;
-      var _pw = (_lw - _pad * 2);
-      var _ph = _lh - _pad * 2;
-      var _px = (1920 - _pw) * 0.5;
-      ctx.fillRect(_px * _sw, (1080 - 150 + _pad) * _sh, _pw * _percent * _sw, _ph * _sh);
-
-      //car
-      var _car_x = _px + _pw * _percent - 100;
-      if (_car_x < _px) {
-        _car_x = _px;
-      }
-     // ctx.drawImage(ld_car,  _car_x * _sw, (1080 - 190) * _sh, 100 * _sw, 42 * _sh);
-
-
-      ctx.font = "18px myFirstFont";
-      const match = /(?<value>\d+\.?\d*)/;
-      const setFontSize = (size) => ctx.font = ctx.font.replace(match, size);
-      setFontSize(35 * _sh);
-      ctx.textAlign = "center";
-      ctx.fillStyle = "#fff";
-      ctx.shadowColor = "black";
-      ctx.shadowOffsetY = 2;
-      var new_per = parseInt(_percent * 100);
-      ctx.fillText("" + new_per + "%", logo_canvas.width / 2, logo_canvas.height / 2 + _sh * 425);
+    .wrap { max-width: var(--max-width); margin: 32px auto; padding: 24px; }
+    
+    header { display:flex; gap:16px; align-items:center; margin-bottom:18px; }
+    h1 { margin:0; font-size:24px; }
+    .sub { color: var(--muted); font-size:14px; }
+    nav { margin-top:12px; display:flex; gap:8px; flex-wrap:wrap; }
+    
+    main { display:block; margin-top:22px; }
+    
+    .card {
+      background:var(--card); padding:16px; border-radius:var(--radius);
+      box-shadow:var(--shadow); transition: background 0.3s, color 0.3s;
     }
-    function resizeLogoCanvas() {
-      var _w = window.innerWidth;
-      var _h = window.innerHeight;
-      var _nw = _h * 16 / 9;
-      // console.log(`${_w} ${_h} ${_nw}`);
-      if (_nw <= _w) {
-        logo_canvas.width = _nw;
-        logo_canvas.height = _h;
-      }
-      else {
-        logo_canvas.width = _w;
-        logo_canvas.height = _w * 9 / 16;
-      }
+    
+    section > article.card { margin-top: 14px; }
+    section > article.card:first-child { margin-top: 0; }
+    
+    .section-title { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+    .muted { color:var(--muted); font-size:13px; }
+    .muted-block { color:var(--muted); font-size:13px; margin-top:8px; }
+    
+    .center { display:flex; align-items:center; gap:10px; }
+    .cta { background:var(--accent); color:#fff; padding:10px 14px; border-radius:12px; font-weight:600; display:inline-block; font-size:13px; }
+    
+    footer { margin-top:22px; text-align:center; color:var(--muted); font-size:13px; padding:18px 0; }
+  </style>
 
-    }
+  <body class="dark">
+    <div class="wrap">
 
+    <header>
+      <div class="logo" aria-label="Unblocked Games | Ananta the Developer - Logo">
+        <img alt="🎮" width="32" height="32"/>
+        <span>GameHub</span>
+      </div>
 
-    document.body.appendChild(script);
-  </script>
-<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js" type="57480f3f31f76c75506c83a0-text/javascript"></script>
-<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js" type="57480f3f31f76c75506c83a0-text/javascript"></script>
-<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js" type="57480f3f31f76c75506c83a0-text/javascript"></script>
-<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics-compat.js" type="57480f3f31f76c75506c83a0-text/javascript"></script>
-<script type="57480f3f31f76c75506c83a0-module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js";
-  import { getAuth  } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+      <div>
+        <h1>Unblocked Games | Ananta the Developer</h1>
+        <div class="sub">Your Playground Unblocked. Unrestricted Play, Unleash Your Game.</div>
+      </div>
+    </header>
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-  apiKey: "AIzaSyC2RwMfh0GMuQMtQdijjUo-MEffB4N9xVY",
-  authDomain: "escape-road-gm1.firebaseapp.com",
-  projectId: "escape-road-gm1",
-  storageBucket: "escape-road-gm1.appspot.com",
-  messagingSenderId: "713881704715",
-  appId: "1:713881704715:web:615cc93a73d9814b24ea0e",
-  measurementId: "G-E8C3TNJE0S"
-};
-window.dataLayer = window.dataLayer || [];
-window.gtag = function(){dataLayer.push(arguments);}
+    <main>
+      <section>
+        <article class="card">
+          <div class="section-title">
+            <h2>"Let's A Go!" - Mario</h2>
+            <span class="muted small">Read The Instructions On How To Play A Game:</span>
+          </div>
 
-window.gtag("config", firebaseConfig.measurementId, {
-    cookie_domain: location.hostname,
-    cookie_flags: "SameSite=None;Secure",
-});
-  // Initialize Firebase
-
-  const app = firebase.initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-</script>
-<script src="rocket-loader.min.js" data-cf-settings="57480f3f31f76c75506c83a0-|49" defer></script></body>
+          <ul style="margin:0;padding-left:18px">
+            <li><strong>2048 —</strong> dev-ananta.github.io/games/2048.html</li>
+            <li><strong>Hangman —</strong> dev-ananta.github.io/games/hangman.html</li>
+            <li><strong>Timed Memory Game —</strong> dev-ananta.github.io/games/timed-memory-game.html</li>
+            <li><strong>Stack —</strong> dev-ananta.github.io/games/stack.html</li>
+            <li><strong>OvO —</strong> dev-ananta.github.io/games/OvO.html</li>
+            <li><strong>House of Hazards —</strong> dev-ananta.github.io/games/hazard-house.html</li>
+            <li><strong>Minesweeper —</strong> dev-ananta.github.io/games/minesweeper.html</li>
+            <li><strong>Stick Hero —</strong> dev-ananta.github.io/games/stick-hero.html</li>
+            <li><strong>OvO 2 —</strong> dev-ananta.github.io/games/OvO2.html</li>
+            <li><strong>N-Gon —</strong> dev-ananta.github.io/games/n-gon.html</li>
+            <li><strong>Color Run —</strong> dev-ananta.github.io/games/color-run.html</li>
+            <li><strong>Platform Game Engine —</strong> dev-ananta.github.io/games/platform-game-engine.html</li>
+            <li><strong>Connect 4 —</strong> dev-ananta.github.io/games/connect4.html</li>
+            <li><strong>Platform Game —</strong> dev-ananta.github.io/games/platform-game.html</li>
+            <li><strong>Tetris —</strong> dev-ananta.github.io/games/tetris.html</li>
+            <li><strong>Cookie Clicker —</strong> dev-ananta.github.io/games/cookie-clicker.html</li>
+            <li><strong>Platformer Game —</strong> dev-ananta.github.io/games/platformer-game.html</li>
+            <li><strong>Tic-Tac-Toe —</strong> dev-ananta.github.io/games/tic-tac-toe.html</li>
+            <li><strong>Crossy Road —</strong> dev-ananta.github.io/games/crossy-road.html</li>
+            <li><strong>Polytrack —</strong> dev-ananta.github.io/games/polytrack.html</li>
+            <li><strong>Tilting Maze —</strong> dev-ananta.github.io/games/tilting-maze.html</li>
+            <li><strong>CSGO —</strong> dev-ananta.github.io/games/csgo.html</li>
+            <li><strong>Pong —</strong> dev-ananta.github.io/games/pong.html</li>
+            <li><strong>Traffic Run —</strong> dev-ananta.github.io/games/traffic-run.html</li>
+            <li><strong>Deltarune —</strong> dev-ananta.github.io/games/deltarune.html</li>
+            <li><strong>Lighthouse —</strong> dev-ananta.github.io/games/lighthouse.html</li>
+            <li><strong>Rubiks —</strong> dev-ananta.github.io/games/rubiks.html</li>
+            <li><strong>Ultrakill —</strong> dev-ananta.github.io/games/ultrakill.html</li>
+            <li><strong>Developer Game —</strong> dev-ananta.github.io/games/developer-game.html</li>
+            <li><strong>Long Road —</strong> dev-ananta.github.io/games/long-road.html</li>
+            <li><strong>Sandboxels —</strong> dev-ananta.github.io/games/sandboxels.html</li>
+            <li><strong>Word Guessing —</strong> dev-ananta.github.io/games/word-guessing.html</li>
+            <li><strong>Drive Mad —</strong> dev-ananta.github.io/games/drive-mad.html</li>
+            <li><strong>Maze —</strong> dev-ananta.github.io/games/maze.html</li>
+            <li><strong>Game Stash —</strong> dev-ananta.github.io/games/game-stash.html</li>
+            <li><strong>Memory Game (Pretty) —</strong> dev-ananta.github.io/games/memory-game-pretty.html</li>
+            <li><strong>Snakes & Ladders —</strong> dev-ananta.github.io/games/snakes-and-ladders.html</li>
+            <li><strong>Gorillas —</strong> dev-ananta.github.io/games/gorillas.html</li>
+            <li><strong>Memory Game —</strong> dev-ananta.github.io/games/memory-game.html</li>
+            <li><strong>Spell Cast —</strong> dev-ananta.github.io/games/spell-cast.html</li>
+          </ul>
+        </article>
+      </section>
+    </main>
+  </body>
 </html>
