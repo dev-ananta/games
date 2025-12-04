@@ -1,83 +1,30 @@
-# Escape Road Web Build Documentation
+# Escape Road
 
-## Overview
+A web-based collection of games and interactive experiences, featuring the Unity WebGL game **Escape Road** alongside a curated library of web games.
 
-This document provides an overview of the legal, technical, and structural components of the **Escape Road** web-based Unity game build. It is intended for developers, maintainers, and anyone auditing the codebase for compliance or optimization.
+## 📋 Overview
 
----
+This repository contains:
 
-## 1. Legal Notices
+- **index.html** — Main entry point for the Escape Road Unity game
+- **codepen.io/** — A collection of 40+ web-based games and interactive projects
 
-### **Copyright & Licensing**
+The project uses Firebase for analytics and authentication, with a dark-themed UI powered by modern CSS and custom fonts.
 
-* The game content (Unity assets, images, fonts, scripts, and other media) is copyrighted by **1games.io** unless otherwise stated.
-* External libraries and services used in this project (Firebase, Eruda, JSDelivr CDN assets) retain their respective licenses.
-* Additionally, this repository is under the **Unlicense** license.
+## 🎮 Main Game: Escape Road
 
-### **Third‑Party Dependencies**
+A Unity WebGL game embedded in the web browser with custom loading screen and responsive design.
 
-This project uses third‑party resources including:
+### Features
 
-* **Unity WebGL Loader** (Unity Technologies — licensing governed by Unity EULA).
-* **Firebase SDK** (Google — licensed under Apache License 2.0).
-* **Eruda Console Tool** (MIT License).
-* **JSDelivr CDN** (for hosting external assets).
+- **Custom Loading Screen** — Canvas-based progress bar with animated percentage text
+- **Mobile Optimized** — Responsive scaling for iOS and Android devices
+- **Firebase Integration** — Authentication and analytics support
+- **Dark Theme** — Blue-gray color scheme with gradient background
 
-Ensure continued usage complies with each provider's terms of service.
+### Configuration
 
-### **Tracking & Analytics Disclosure**
-
-The following analytics technologies are used:
-
-* **Firebase Analytics** via `measurementId`.
-* A global `gtag()` event tracker.
-
-Developers deploying this publicly must include a **privacy policy** disclosing:
-
-* Data collected
-* Cookies used (`SameSite=None; Secure` flags enabled)
-* Sharing and retention practices
-
----
-
-## 2. Technical Overview
-
-### **Page Structure**
-
-The page is a custom‑styled HTML document embedding a Unity WebGL game with:
-
-* A responsive canvas
-* A custom loading screen rendered via `<canvas>`
-* A fallback mobile layout
-
-### **Base URL Handling**
-
-```html
-<base href="https://cdn.jsdelivr.net/.../escape%20road/">
-```
-
-This ensures all asset paths resolve relative to a unified CDN directory.
-
-### **Custom Font**
-
-```css
-@font-face {
-  font-family: myFirstFont;
-  src: url(Chainwhacks.otf);
-}
-```
-
-Used for both the body and logo-loading canvas.
-
----
-
-## 3. Unity WebGL Build Configuration
-
-### **Config Object**
-
-The Unity instance is created using:
-
-```js
+```javascript
 const config = {
   dataUrl: "TemplateData/data.unityweb",
   frameworkUrl: "TemplateData/framework.js.unityweb",
@@ -89,165 +36,151 @@ const config = {
 };
 ```
 
-These file names map directly to the exported Unity WebGL build.
+## 🎯 Game Collection (codepen.io/)
 
-### **Mobile Optimization**
+The `codepen.io/` directory contains 40+ web-based games and experiences:
 
-```js
-if (/iPhone|iPad|iPod|Android/.test(navigator.userAgent)) {
-  config.devicePixelRatio = 1;
+### Popular Games
+
+- **2048** — Number sliding puzzle game
+- **Connect 4** — Classic turn-based strategy
+- **Crossy Road** — Endless runner game
+- **Cookie Clicker** — Idle game
+- **Minesweeper** — Classic puzzle
+- **Tetris** — Block-dropping game
+- **Tic-Tac-Toe 2P** — Two-player strategy
+- **Pong** — Classic arcade game
+- **Memory Games** — Memory matching challenges
+- **Platformer & Platform Game Engine** — Side-scrolling games
+
+### Styling
+
+Each game includes associated SCSS stylesheets in `styles-*.scss` for customization.
+
+## 🛠 Technology Stack
+
+- **HTML5** — Semantic markup
+- **CSS3/SCSS** — Dark theme with responsive design
+- **JavaScript** — Game logic and DOM manipulation
+- **Unity WebGL** — 3D game rendering
+- **Firebase** — Authentication, Firestore, and Analytics
+- **Eruda** — Mobile debugging console
+- **JSDelivr CDN** — Asset hosting and delivery
+
+## 📁 Project Structure
+
+```
+escape-road/
+├── index.html                 # Main Escape Road game entry point
+├── README.md                 # This file
+├── LICENSE                   # Unlicense (public domain)
+├── TemplateData/            # Unity WebGL build files
+│   ├── data.unityweb
+│   ├── framework.js.unityweb
+│   ├── wasm.unityweb
+│   └── loader.js
+├── assets/
+│   ├── Chainwhacks.otf      # Custom font
+│   ├── loading.png          # Loading screen background
+│   ├── car-icon.png         # Animated car icon
+│   └── az_logo.png          # Branding logo
+└── codepen.io/              # Web games collection
+    ├── *.html               # Game files
+    ├── *.scss               # Stylesheets
+    ├── *.pug                # Template files
+    └── script-1.js          # Shared JavaScript
+```
+
+## 🎨 Styling
+
+The project uses a consistent dark theme defined in CSS custom properties:
+
+```css
+:root {
+  --accent: #363844;
+  --accent-dark: #272930;
+  --muted: #b0b0b0;
+  --bg: #000000;
+  --card: #3f3e42;
+  --max-width: 1100px;
+  --radius: 12px;
+  --shadow: 0 6px 20px rgba(0,0,0,0.08);
 }
 ```
 
-Unity’s pixel ratio is reduced for mobile devices to prevent performance issues.
+## 🔐 Security Considerations
 
----
+### Firebase Keys
 
-## 4. Custom Loading Screen
+- API keys are exposed client-side (standard for Firebase)
+- Secure via Firebase Security Rules in the console
+- Restrict API key usage in Google Cloud Console
 
-A custom progress bar is drawn manually using the HTML `<canvas>` element.
+### Recommendations
 
-### Key Features
+- ✅ Firebase Security Rules enabled
+- ⚠️ Enable HTTPS for secure cookies
+- ⚠️ Disable Eruda in production builds
+- ⚠️ Consider Content Security Policy (CSP) headers
+- ⚠️ Use Subresource Integrity (SRI) for CDN scripts
 
-* Background image
-* Dynamic progress bar fill
-* Animated percentage text
-* Responsive scaling via `resizeLogoCanvas()`
+## 🚀 Deployment
 
-The loader modifies the canvas width/height to preserve a **16:9 aspect ratio**.
+### CDN Hosting
 
----
+The project is hosted on JSDelivr:
 
-## 5. Scripting Architecture
+```html
+<base href="https://cdn.jsdelivr.net/gh/[user]/[repo]@[branch]/drive.google.com/escape%20road/">
+```
 
-### **Core Scripts**
+### Firebase Setup
 
-* Unity loader script (`loader.js`) is dynamically appended.
-* Game initialization and progress handling.
-* Custom canvas drawing functions.
-* Window resize and drawing events.
+1. Create Firebase project at [firebase.google.com](https://firebase.google.com)
+2. Update `firebaseConfig` in `index.html` with your credentials
+3. Enable Firebase services:
+   - Authentication
+   - Firestore Database
+   - Analytics
 
-### **Custom Utility Functions**
+## 📊 Analytics
 
-* `delay(ms)` — Promise‑based timeout.
-* `drawCanvas(percent)` — renders progress bar.
-* `resizeLogoCanvas()` — maintains scaling.
+Google Analytics is configured via Firebase:
 
----
-
-## 6. Firebase Integration
-
-### **Firebase Services Used**
-
-* **firebase-app**
-* **firebase-auth**
-* **firebase-firestore**
-* **firebase-analytics**
-
-### **Configuration**
-
-Firebase config includes:
-
-* `apiKey`
-* `authDomain`
-* `projectId`
-* `storageBucket`
-* `messagingSenderId`
-* `appId`
-* `measurementId`
-
-These must remain secure when deploying publicly.
-
-### **Analytics Setup**
-
-```js
+```javascript
 window.gtag("config", firebaseConfig.measurementId, {
   cookie_domain: location.hostname,
   cookie_flags: "SameSite=None;Secure",
 });
 ```
 
-This enables site‑wide analytics tracking.
+## 📝 License
+
+This project is released under the **Unlicense** — free and unencumbered software released into the public domain. See [LICENSE](LICENSE) for details.
+
+### Third-Party Licenses
+
+- **Unity WebGL** — Unity EULA
+- **Firebase SDK** — Apache License 2.0
+- **Eruda** — MIT License
+- **Game assets** — Various sources (see individual game files)
+
+## 👥 Credits
+
+- **1games.io** — Game creator and maintainer
+- **CodePen.io** — Source for game collection
+- **Firebase/Google** — Backend services
+- **JSDelivr** — CDN hosting
+- **Eruda** — Mobile debugging tools
+
+## 🔗 Resources
+
+- [Google Docs: Game Updates](https://docs.google.com/document/d/1_FmH3BlSBQI7FGgAQL59-ZPe8eCxs35wel6JUyVaG8Q/)
+- [Firebase Documentation](https://firebase.google.com/docs)
+- [Unity WebGL Documentation](https://docs.unity3d.com/Manual/webgl.html)
+- [Eruda Console](https://github.com/liriliri/eruda)
 
 ---
 
-## 7. Additional Scripts
-
-### **Eruda Debug Console**
-
-```js
-<script src="https://cdn.jsdelivr.net/npm/eruda"></script>
-<script>eruda.init()</script>
-```
-
-Enables debugging on mobile browsers.
-
-### **Cloudflare Rocket Loader**
-
-Improves load performance:
-
-```html
-<script src="rocket-loader.min.js" defer></script>
-```
-
----
-
-## 8. Security Considerations
-
-### **Potential Concerns**
-
-* Firebase API keys exposed client‑side (normal for Firebase, but should be restricted via rules).
-* CDN‑hosted game files rely on third‑party uptime.
-* `eruda` should not be enabled in production unless needed.
-* Lack of CSP headers may allow injection.
-
-### **Recommended Improvements**
-
-* Disable Eruda in production builds.
-* Implement Firebase Security Rules.
-* Use Subresource Integrity (SRI) for CDN scripts.
-* Add Content Security Policy (CSP) headers.
-
----
-
-## 9. File & Asset Summary
-
-### **Core Files**
-
-* `/TemplateData/data.unityweb`
-* `/TemplateData/framework.js.unityweb`
-* `/TemplateData/wasm.unityweb`
-* `/TemplateData/loader.js`
-* `Chainwhacks.otf` (font)
-* `loading.png`, `car-icon.png` (loading screen assets)
-* `az_logo.png` (intro branding)
-
----
-
-## 10. Developer Notes
-
-* The project relies heavily on canvas‑based rendering for branding.
-* Mobile performance optimizations are minimal and may require enhancements.
-* Documentation should be updated when modifying the game build or CDN structure.
-
----
-
-## 11. Versioning
-
-* **Escape Road v2.0** — Unity build referenced in the page.
-* Future updates should be versioned using separate folders or CDN commits.
-
----
-
-## 12. Credits
-
-* **1games.io** — Game creator
-* **CDN Hosting** — JSDelivr
-* **Firebase Services** — Google
-* **Debug Tools** — Eruda
-*  **Source (Codepen.io)** - Dexter Harrow
-*  **Middleman Developer** - Ananta The Developer (dev-ananta)
-
----
-
-### End of Documentation
+**Last Updated:** December 2024  
+**Version:** 2.0
