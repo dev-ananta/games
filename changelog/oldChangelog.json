@@ -1,0 +1,7 @@
+[
+  {
+    "version": "local-fallback-history",
+    "title": "Why gameplay is unavailable",
+    "content": "Missing pieces include src/shellshock.js from the original build, backend websocket services, auth/shop APIs, and several local assets referenced by shell.html."
+  }
+]

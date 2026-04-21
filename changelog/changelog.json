@@ -1,0 +1,7 @@
+[
+  {
+    "version": "local-fallback",
+    "title": "Local fallback mode",
+    "content": "This repository does not include the original Shell Shockers engine bundle or backend services, so the page loads a diagnostic shell instead of the full game."
+  }
+]

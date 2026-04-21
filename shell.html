@@ -1,10 +1,36 @@
 <!DOCTYPE html>
 <html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<script>
+<script>
 	var gameServerRoot = null;
     var dynamicContentRoot = null;
     var dynamicContentPrefix = '';
+</script>
+
+<script>
+	window.ga = window.ga || function () {};
+	window.fbq = window.fbq || function () {};
+	window.OneSignal = window.OneSignal || [];
+	window.googletag = window.googletag || {
+		cmd: [],
+		defineSlot: function () {
+			return {
+				addService: function () {
+					return this;
+				},
+			};
+		},
+		pubads: function () {
+			return {
+				disableInitialLoad: function () {},
+				addEventListener: function () {},
+				refresh: function () {},
+			};
+		},
+		enableServices: function () {},
+		display: function () {},
+		destroySlots: function () {},
+	};
 </script>
 
 <script>
@@ -174,6 +200,22 @@ class Loader {
 	static loadJS (path, callback) {
 		let p = path;
 
+		if (window.location.protocol === 'file:') {
+			const script = document.createElement('script');
+			script.src = p;
+			script.onload = () => {
+				if (callback) callback();
+			};
+			script.onerror = () => {
+				console.warn('Failed to load script', p);
+				if (window.handleShellShockLocalFallback) {
+					window.handleShellShockLocalFallback('missing-script', p);
+				}
+			};
+			document.body.appendChild(script);
+			return;
+		}
+
 		(function (p, cb) {
 			let xhr = new XMLHttpRequest();
   			xhr.open('GET', p, true);
@@ -189,6 +231,9 @@ class Loader {
 			xhr.onload = () => {
 				if (xhr.status != 200) {
       				console.log(`Error ${xhr.status}: ${xhr.statusText}`);
+					if (window.handleShellShockLocalFallback) {
+						window.handleShellShockLocalFallback('missing-script', p);
+					}
     			}
 				else {
 					Loader.finish(id);
@@ -198,6 +243,13 @@ class Loader {
 					document.body.appendChild(script);
 
 					if (cb) cb();
+				}
+			};
+
+			xhr.onerror = () => {
+				console.warn('Failed to load script', p);
+				if (window.handleShellShockLocalFallback) {
+					window.handleShellShockLocalFallback('missing-script', p);
 				}
 			};
 
@@ -646,13 +698,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <audio id="theAudio" preload="metadata"></audio><!-- VueJS -->
 <script src="js/vue/vue.min.2.6.10.js"></script><!-- tools and varibles -->
 <script>
-	let changeLogData;
-	var version;
+	let changeLogData = [{
+		version: 'local-fallback',
+		title: 'Local fallback mode',
+		content: 'Missing changelog data or running without a local server.',
+	}];
+	var version = changeLogData[0].version;
 
 	fetch('./changelog/changelog.json?1653515333', {cache: "no-cache"})
 		.then(response => response.json())
 		.then(data => {
 			changeLogData = data;
+			version = changeLogData[0].version;
+		})
+		.catch(() => {
+			changeLogData = [{
+				version: 'local-fallback',
+				title: 'Local fallback mode',
+				content: 'Missing changelog data or running without a local server.',
+			}];
 			version = changeLogData[0].version;
 		});
 
@@ -8740,7 +8804,8 @@ function startVue(languageCode, locData) {
 					.then(response => response.json())
 					.then(data => {
 						data.forEach(el => this.changelog.current.push(el));
-				});
+					})
+					.catch(error => console.log('Old changelog fetch failed', error));
 
 				this.changelog.showHistoryBtn = false;
 			},
